@@ -29,7 +29,8 @@ FREObject isSupported(FREContext ctx, void* funcData, uint32_t argc, FREObject a
 
 FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject argv[])
 {
-// take screen shot and get array of pixels {
+	// the next code takes screenshot and retrives array of pixels (I can't test if it works fine)
+
 	UINT32 x,y;
 	x = GetSystemMetrics(SM_CXSCREEN);
 	y = GetSystemMetrics(SM_CYSCREEN);
@@ -48,10 +49,11 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	bmpInfo.bmiHeader.biSize=sizeof(BITMAPINFOHEADER);
 
 	GetDIBits(hdcScreen, hbmp, 0, bmpInfo.bmiHeader.biHeight, &bits, &bmpInfo, DIB_RGB_COLORS);
-// }
 
+	// Note: in this place we should have array of pixels
+	
+	// the next code copies pixels to AS3 BitmapData object (works fine for red pixels)
 
-// copy pixels to AS3 bitmap data object {
 	FREObject input = argv[0];
 
 	FREBitmapData2 bmd;
@@ -70,13 +72,17 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	{
 	    for (i = 0; i < bmd.width; i++, bmdPixels++)
 	    {
-	    	int r = bits[3*((j*bmpInfo.bmiHeader.biHeight)+i)+2];
-	    	int g = bits[3*((j*bmpInfo.bmiHeader.biHeight)+i)+1];
-	    	int b = bits[3*((j*bmpInfo.bmiHeader.biHeight)+i)+0];
+			// copy pixels from bits array (not working)
+			/*
+			int r = bits[3*((j*bmpInfo.bmiHeader.biHeight)+i)+2];
+			int g = bits[3*((j*bmpInfo.bmiHeader.biHeight)+i)+1];
+			int b = bits[3*((j*bmpInfo.bmiHeader.biHeight)+i)+0];
 
-	    	colorValue = (r << 16) | (g << 8) | b;
-
-	    	colorValue &= 0xFF000000;
+			colorValue = (r << 16) | (g << 8) | b;
+			*/
+		
+			// make each pixel red (for testing)
+			colorValue = 0xFFFF0000;
 
 	      * bmdPixels = colorValue;
 	    }
@@ -85,7 +91,8 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	  }
 
 	FREReleaseBitmapData(input);
-	// copy pixels }
+
+	// the next code returns debug information
 
 	FREObject result;
 
