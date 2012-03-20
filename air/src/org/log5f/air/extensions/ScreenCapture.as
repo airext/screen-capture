@@ -7,7 +7,8 @@ package org.log5f.air.extensions
 	{
 		public function ScreenCapture()
 		{
-			this.context = ExtensionContext.createExtensionContext("org.log5f.air.extensions.ScreenCapture", null);
+			this.context = 
+				ExtensionContext.createExtensionContext("org.log5f.air.extensions.ScreenCapture", null);
 		}
 		
 		private var context:ExtensionContext;
@@ -19,7 +20,7 @@ package org.log5f.air.extensions
 		
 		public function capture():Object
 		{
-			var bmd:BitmapData = new BitmapData(10, 10);
+			var bmd:BitmapData = new BitmapData(1920, 1080);
 			
 			var result:Object = this.context.call("capture", bmd);
 			

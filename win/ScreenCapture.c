@@ -31,24 +31,34 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 {
 	// the next code takes screenshot and retrives array of pixels (I can't test if it works fine)
 
-	UINT32 x,y;
-	x = GetSystemMetrics(SM_CXSCREEN);
-	y = GetSystemMetrics(SM_CYSCREEN);
+	HDC hDc = GetWindowDC(NULL);
 
-	HDC hdc = GetDC(NULL);
-	HDC hdcScreen = CreateCompatibleDC(hdc);
+	BITMAPFILEHEADER bmFileHeader;
+	memset(&bmFileHeader, 0, sizeof(BITMAPFILEHEADER));
 
-	HBITMAP hbmp = CreateCompatibleBitmap(hdc, x, y);
+	bmFileHeader.bfType = 0x4D42;
+	bmFileHeader.bfSize = 0; //Need to be filled in future
+	bmFileHeader.bfOffBits = 0; //Need to be filled in future
 
-	BITMAPINFO bmpInfo;
+	BITMAPINFO MemoryLookup[4]; //Create a buffer zone for possible pallete
+	BITMAPINFO bmInfoHeader = MemoryLookup[0];
+	memset(&bmInfoHeader, 0, sizeof(BITMAPINFOHEADER));
+	bmInfoHeader.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 
-	ZeroMemory(&bmpInfo,sizeof(BITMAPINFO));
+	HBITMAP hBmp = (HBITMAP) GetCurrentObject(hDc, OBJ_BITMAP);
+	if (hBmp == NULL)
+		return NULL;
 
-	COLORREF * bits = malloc(1920 * 1080 * sizeof(COLORREF));
+	LONG lRes = GetDIBits(hDc, hBmp, 0, GetDeviceCaps(hDc, VERTRES), NULL, &bmInfoHeader, DIB_RGB_COLORS);
+	if (lRes == 0)
+		return NULL;
 
-	bmpInfo.bmiHeader.biSize=sizeof(BITMAPINFOHEADER);
+	size_t nDataSize = bmInfoHeader.bmiHeader.biSizeImage;//bmInfoHeader.bmiHeader.biCompression == BI_RGB ? (bmInfoHeader.bmiHeader.biHeight * bmInfoHeader.bmiHeader.biWidth * bmInfoHeader.bmiHeader.biBitCount / 8) : bmInfoHeader.bmiHeader.biSizeImage;
 
-	GetDIBits(hdcScreen, hbmp, 0, bmpInfo.bmiHeader.biHeight, &bits, &bmpInfo, DIB_RGB_COLORS);
+	unsigned char* pBmp = malloc(nDataSize);
+	bmInfoHeader.bmiHeader.biCompression = BI_RGB;
+	bmInfoHeader.bmiHeader.biSizeImage = 0;
+	lRes = GetDIBits(hDc, hBmp, 0, bmInfoHeader.bmiHeader.biHeight, pBmp, &bmInfoHeader, DIB_RGB_COLORS);
 
 	// Note: in this place we should have array of pixels
 	
@@ -56,9 +66,9 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	FREObject input = argv[0];
 
-	FREBitmapData2 bmd;
+	FREBitmapData bmd;
 
-	FREAcquireBitmapData2(input, &bmd);
+	FREAcquireBitmapData(input, &bmd);
 
 	int i, j;
 
@@ -68,26 +78,28 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	int32_t colorValue;
 
+	int x, y;
+
+	DWORD* temporary;
+//
+//	for (y = 0; y < bmInfoHeader.bmiHeader.biHeight; y++)
+//	{
+//		for (x = 0; x < bmInfoHeader.bmiHeader.biWidth; x++)
+//		{
+//			* bmdPixels = ( (DWORD*) pBmp)[y * bmInfoHeader.bmiHeader.biWidth + x];
+//		}
+//	}
+
 	for (j = 0; j < bmd.height; j++)
 	{
 	    for (i = 0; i < bmd.width; i++, bmdPixels++)
 	    {
-			// copy pixels from bits array (not working)
-			/*
-			int r = bits[3*((j*bmpInfo.bmiHeader.biHeight)+i)+2];
-			int g = bits[3*((j*bmpInfo.bmiHeader.biHeight)+i)+1];
-			int b = bits[3*((j*bmpInfo.bmiHeader.biHeight)+i)+0];
+			//colorValue = (int32_t) ((DWORD*) pBmp)[j * bmInfoHeader.bmiHeader.biWidth + i];
 
-			colorValue = (r << 16) | (g << 8) | b;
-			*/
-		
-			// make each pixel red (for testing)
-			colorValue = 0xFFFF0000;
-
-	      * bmdPixels = colorValue;
+	      * bmdPixels = 0xFF000000 | ((DWORD*) pBmp)[j * bmInfoHeader.bmiHeader.biWidth + i];
 	    }
 
-	    bmdPixels += offset;
+//	    bmdPixels += offset;
 	  }
 
 	FREReleaseBitmapData(input);
@@ -96,7 +108,7 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	FREObject result;
 
-	FRENewObjectFromUint32((uint32_t) colorValue, &result);
+	FRENewObjectFromUint32((uint32_t) bmdPixels[1], &result);
 
 	return result;
 }

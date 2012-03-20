@@ -41,7 +41,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.so.debug.895513030" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.so.debug">
 								<option defaultValue="true" id="gnu.c.link.mingw.so.debug.option.shared.298877020" name="Shared (-shared)" superClass="gnu.c.link.mingw.so.debug.option.shared" valueType="boolean"/>
 								<option id="gnu.c.link.option.userobjs.1697201363" name="Other objects" superClass="gnu.c.link.option.userobjs" valueType="userObjs">
-									<listOptionValue builtIn="false" value="&quot;E:\Apps\FlashBuilder\Adobe Flash Builder 4.6\sdks\4.6.0\lib\win\FlashRuntimeExtensions.lib&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;D:\tools\Adobe\Adobe Flash Builder 4.6\sdks\4.6.0\lib\win\FlashRuntimeExtensions.lib&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Program Files\Microsoft SDKs\Windows\v7.0A\Lib\Gdi32.Lib&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1000150326" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
@@ -99,7 +99,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.so.release.1518261243" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.so.release">
 								<option defaultValue="true" id="gnu.c.link.mingw.so.release.option.shared.1128215515" name="Shared (-shared)" superClass="gnu.c.link.mingw.so.release.option.shared" valueType="boolean"/>
 								<option id="gnu.c.link.option.userobjs.328542572" name="Other objects" superClass="gnu.c.link.option.userobjs" valueType="userObjs">
-									<listOptionValue builtIn="false" value="&quot;E:\Apps\FlashBuilder\Adobe Flash Builder 4.6\sdks\4.6.0\lib\win\FlashRuntimeExtensions.lib&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;D:\tools\Adobe\Adobe Flash Builder 4.6\sdks\4.6.0\lib\win\FlashRuntimeExtensions.lib&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Program Files\Microsoft SDKs\Windows\v7.0A\Lib\Gdi32.Lib&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.249130174" superClass="cdt.managedbuild.tool.gnu.c.linker.input">

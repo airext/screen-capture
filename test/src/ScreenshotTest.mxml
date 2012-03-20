@@ -16,7 +16,7 @@
 				
 				bmd = screenshot.capture() as BitmapData;
 				
-				trace(bmd.getPixel(11, 10));
+				trace(bmd.getPixel(0, 0));
 			}
 			
 		]]>
@@ -27,7 +27,7 @@
 	
 	<s:Rect left="0" top="0" right="0" bottom="0">
 		<s:fill>
-			<s:SolidColor color="#00FFFF" />
+			<s:SolidColor color="#FF0000" />
 		</s:fill>
 	</s:Rect>
 	
