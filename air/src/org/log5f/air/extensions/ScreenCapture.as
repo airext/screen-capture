@@ -1,7 +1,10 @@
 package org.log5f.air.extensions
 {
 	import flash.display.BitmapData;
+	import flash.display.Loader;
+	import flash.display.Stage;
 	import flash.external.ExtensionContext;
+	import flash.system.Capabilities;
 
 	public class ScreenCapture
 	{
@@ -18,13 +21,14 @@ package org.log5f.air.extensions
 			return this.context.call("isSupported") as Boolean;
 		}
 		
-		public function capture(width:uint=100, height:uint=100):Object
+		public function capture(width:int=-1, height:int=-1):Object
 		{
+			width = width < 0 ? Capabilities.screenResolutionX : width;
+			height = height < 0 ? Capabilities.screenResolutionY : height;
+			
 			var bmd:BitmapData = new BitmapData(width, height);
 			
 			var result:Object = this.context.call("capture", bmd);
-			
-			trace("result:", result);
 			
 			return bmd;
 		}
