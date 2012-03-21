@@ -3,6 +3,8 @@
 					   xmlns:s="library://ns.adobe.com/flex/spark" applicationComplete="windowedapplication1_applicationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
+			import flash.utils.getTimer;
+			
 			import mx.events.FlexEvent;
 			
 			import org.log5f.air.extensions.ScreenCapture;
@@ -14,7 +16,9 @@
 			{
 				var screenshot:ScreenCapture = new ScreenCapture();
 				
-				bmd = screenshot.capture() as BitmapData;
+				var t:Number = getTimer();
+				bmd = screenshot.capture(1920,1080) as BitmapData;
+				trace(getTimer() - t);
 				
 				trace(bmd.getPixel(0, 0));
 			}

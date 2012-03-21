@@ -29,7 +29,7 @@ FREObject isSupported(FREContext ctx, void* funcData, uint32_t argc, FREObject a
 
 FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject argv[])
 {
-	// the next code takes screenshot and retrives array of pixels (I can't test if it works fine)
+	// the next code takes screenshot and retrieves array of pixels (I can't test if it works fine)
 
 	HDC hDc = GetWindowDC(NULL);
 
@@ -60,8 +60,6 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	bmInfoHeader.bmiHeader.biSizeImage = 0;
 	lRes = GetDIBits(hDc, hBmp, 0, bmInfoHeader.bmiHeader.biHeight, pBmp, &bmInfoHeader, DIB_RGB_COLORS);
 
-	// Note: in this place we should have array of pixels
-	
 	// the next code copies pixels to AS3 BitmapData object (works fine for red pixels)
 
 	FREObject input = argv[0];
@@ -76,30 +74,14 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	uint32_t *bmdPixels = bmd.bits32;
 
-	int32_t colorValue;
-
-	int x, y;
-
-	DWORD* temporary;
-//
-//	for (y = 0; y < bmInfoHeader.bmiHeader.biHeight; y++)
-//	{
-//		for (x = 0; x < bmInfoHeader.bmiHeader.biWidth; x++)
-//		{
-//			* bmdPixels = ( (DWORD*) pBmp)[y * bmInfoHeader.bmiHeader.biWidth + x];
-//		}
-//	}
-
 	for (j = 0; j < bmd.height; j++)
 	{
 	    for (i = 0; i < bmd.width; i++, bmdPixels++)
 	    {
-			//colorValue = (int32_t) ((DWORD*) pBmp)[j * bmInfoHeader.bmiHeader.biWidth + i];
-
 	      * bmdPixels = 0xFF000000 | ((DWORD*) pBmp)[j * bmInfoHeader.bmiHeader.biWidth + i];
 	    }
 
-//	    bmdPixels += offset;
+	    bmdPixels += offset;
 	  }
 
 	FREReleaseBitmapData(input);
@@ -108,7 +90,7 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	FREObject result;
 
-	FRENewObjectFromUint32((uint32_t) bmdPixels[1], &result);
+	FRENewObjectFromUint32((uint32_t) offset, &result);
 
 	return result;
 }

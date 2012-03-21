@@ -18,9 +18,9 @@ package org.log5f.air.extensions
 			return this.context.call("isSupported") as Boolean;
 		}
 		
-		public function capture():Object
+		public function capture(width:uint=100, height:uint=100):Object
 		{
-			var bmd:BitmapData = new BitmapData(1920, 1080);
+			var bmd:BitmapData = new BitmapData(width, height);
 			
 			var result:Object = this.context.call("capture", bmd);
 			
