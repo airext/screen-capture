@@ -53,6 +53,18 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	if (lRes == 0)
 		return NULL;
 
+	WORD  biBitCount = bmInfoHeader.bmiHeader.biBitCount;
+	DWORD biClrImportant = bmInfoHeader.bmiHeader.biClrImportant;
+	DWORD biClrUsed = bmInfoHeader.bmiHeader.biClrUsed;
+	DWORD biCompression = bmInfoHeader.bmiHeader.biCompression;
+	LONG  biHeight = bmInfoHeader.bmiHeader.biHeight;
+	WORD  biPlanes = bmInfoHeader.bmiHeader.biPlanes;
+	DWORD biSize = bmInfoHeader.bmiHeader.biSize;
+	DWORD biSizeImage = bmInfoHeader.bmiHeader.biSizeImage;
+	LONG  biWidth = bmInfoHeader.bmiHeader.biWidth;
+	LONG  biXPelsPerMeter = bmInfoHeader.bmiHeader.biXPelsPerMeter;
+	LONG  biYPelsPerMeter = bmInfoHeader.bmiHeader.biYPelsPerMeter;
+
 	size_t nDataSize = bmInfoHeader.bmiHeader.biSizeImage;//bmInfoHeader.bmiHeader.biCompression == BI_RGB ? (bmInfoHeader.bmiHeader.biHeight * bmInfoHeader.bmiHeader.biWidth * bmInfoHeader.bmiHeader.biBitCount / 8) : bmInfoHeader.bmiHeader.biSizeImage;
 
 	unsigned char* pBmp = malloc(nDataSize);
@@ -90,7 +102,7 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	FREObject result;
 
-	FRENewObjectFromUint32((uint32_t) offset, &result);
+	FRENewObjectFromUint32((uint32_t) biYPelsPerMeter, &result);
 
 	return result;
 }
