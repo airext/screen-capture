@@ -1,0 +1,3 @@
+echo Building SWF file...
+
+"%FLEX_HOME%"\bin\amxmlc -output ScreenCaptureTest.swf -library-path+=ScreenCapture.swc -- ../test/src/ScreenCaptureTest.mxml

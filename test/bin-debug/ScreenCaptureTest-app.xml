@@ -15,14 +15,14 @@
 
 	<!-- A universally unique application identifier. Must be unique across all AIR applications.
 	Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-	<id>ScreenshotTest</id>
+	<id>ScreenCaptureTest</id>
 
 	<!-- Used as the filename for the application. Required. -->
-	<filename>ScreenshotTest</filename>
+	<filename>ScreenCaptureTest</filename>
 
 	<!-- The name that is displayed in the AIR application installer. 
 	May have multiple values for each language. See samples or xsd schema file. Optional. -->
-	<name>ScreenshotTest</name>
+	<name>ScreenCaptureTest</name>
 	
 	<!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade. 
 	Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
@@ -46,7 +46,7 @@
 	<initialWindow>
 		<!-- The main SWF or HTML file of the application. Required. -->
 		<!-- Note: In Flash Builder, the SWF reference is set automatically. -->
-		<content>ScreenshotTest.swf</content>
+		<content>ScreenCaptureTest.swf</content>
 		
 		<!-- The title of the main window. Optional. -->
 		<!-- <title></title> -->
@@ -116,6 +116,7 @@
 	<!-- (i.e., to only mobile devices) then add this element and list -->
 	<!-- only the profiles which your application does support. -->
 	<!-- <supportedProfiles>desktop extendedDesktop mobileDevice extendedMobileDevice</supportedProfiles> -->
+	<supportedProfiles>extendedDesktop</supportedProfiles>
 
 	<!-- The subpath of the standard default installation location to use. Optional. -->
 	<!-- <installFolder></installFolder> -->
@@ -229,8 +230,8 @@
     <!-- </android> -->
 	<!-- End of the schema for adding the android specific tags in AndroidManifest.xml file -->
 
-
 <extensions>
-        <extensionID>org.log5f.air.extensions.ScreenCapture</extensionID>
+        <extensionID>org.log5f.air.extensions.Screenshot</extensionID>
+    <extensionID>org.log5f.air.extensions.ScreenCapture</extensionID>
     </extensions>
 </application>
