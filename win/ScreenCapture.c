@@ -12,6 +12,7 @@
 #include "windows.h"
 #include "winuser.h"
 #include "wingdi.h"
+#include "stdio.h"
 
 //------------------------------------------------------------------------
 
@@ -50,6 +51,20 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	        return NULL;
 
 	LONG lRes = GetDIBits(hDc, hBmp, 0, GetDeviceCaps(hDc, VERTRES), NULL, pbmInfoHeader, DIB_RGB_COLORS);
+
+	//Capture code till line 55
+	FILE* fLog = fopen ("capture.log", "wt");
+	printf("Base format:\n");
+	printf("biSize = %X\n", pbmInfoHeader->bmiHeader.biSize);
+	//Print all propertys...
+	printf("biSize = %X\n\n", pbmInfoHeader->bmiHeader.biClrImportant);
+	//Capture code till line 74....
+	printf("Image format:\n");
+	printf("biSize = %X\n", pbmInfoHeader->bmiHeader.biSize);
+	//Print all propertys...
+	printf("biSize = %X\n\n", pbmInfoHeader->bmiHeader.biClrImportant);
+	fclose(fLog);
+
 	if (lRes == 0)
 	        return NULL;
 
