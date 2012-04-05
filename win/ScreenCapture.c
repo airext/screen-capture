@@ -41,36 +41,36 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	bmFileHeader.bfOffBits = 0; //Need to be filled in future
 
 	BITMAPINFO MemoryLookup[4]; //Create a buffer zone for possible pallete
-	BITMAPINFO bmInfoHeader = MemoryLookup[0];
-	memset(&bmInfoHeader, 0, sizeof(BITMAPINFOHEADER));
-	bmInfoHeader.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	BITMAPINFO* pbmInfoHeader = MemoryLookup;
+	memset(pbmInfoHeader, 0, sizeof(BITMAPINFOHEADER));
+	pbmInfoHeader->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 
 	HBITMAP hBmp = (HBITMAP) GetCurrentObject(hDc, OBJ_BITMAP);
 	if (hBmp == NULL)
-		return NULL;
+	        return NULL;
 
-	LONG lRes = GetDIBits(hDc, hBmp, 0, GetDeviceCaps(hDc, VERTRES), NULL, &bmInfoHeader, DIB_RGB_COLORS);
+	LONG lRes = GetDIBits(hDc, hBmp, 0, GetDeviceCaps(hDc, VERTRES), NULL, pbmInfoHeader, DIB_RGB_COLORS);
 	if (lRes == 0)
-		return NULL;
+	        return NULL;
 
-	WORD  biBitCount = bmInfoHeader.bmiHeader.biBitCount;
-	DWORD biClrImportant = bmInfoHeader.bmiHeader.biClrImportant;
-	DWORD biClrUsed = bmInfoHeader.bmiHeader.biClrUsed;
-	DWORD biCompression = bmInfoHeader.bmiHeader.biCompression;
-	LONG  biHeight = bmInfoHeader.bmiHeader.biHeight;
-	WORD  biPlanes = bmInfoHeader.bmiHeader.biPlanes;
-	DWORD biSize = bmInfoHeader.bmiHeader.biSize;
-	DWORD biSizeImage = bmInfoHeader.bmiHeader.biSizeImage;
-	LONG  biWidth = bmInfoHeader.bmiHeader.biWidth;
-	LONG  biXPelsPerMeter = bmInfoHeader.bmiHeader.biXPelsPerMeter;
-	LONG  biYPelsPerMeter = bmInfoHeader.bmiHeader.biYPelsPerMeter;
+	WORD  biBitCount = pbmInfoHeader->bmiHeader.biBitCount;
+	DWORD biClrImportant = pbmInfoHeader->bmiHeader.biClrImportant;
+	DWORD biClrUsed = pbmInfoHeader->bmiHeader.biClrUsed;
+	DWORD biCompression = pbmInfoHeader->bmiHeader.biCompression;
+	LONG  biHeight = pbmInfoHeader->bmiHeader.biHeight;
+	WORD  biPlanes = pbmInfoHeader->bmiHeader.biPlanes;
+	DWORD biSize = pbmInfoHeader->bmiHeader.biSize;
+	DWORD biSizeImage = pbmInfoHeader->bmiHeader.biSizeImage;
+	LONG  biWidth = pbmInfoHeader->bmiHeader.biWidth;
+	LONG  biXPelsPerMeter = pbmInfoHeader->bmiHeader.biXPelsPerMeter;
+	LONG  biYPelsPerMeter = pbmInfoHeader->bmiHeader.biYPelsPerMeter;
 
-	size_t nDataSize = bmInfoHeader.bmiHeader.biSizeImage;//bmInfoHeader.bmiHeader.biCompression == BI_RGB ? (bmInfoHeader.bmiHeader.biHeight * bmInfoHeader.bmiHeader.biWidth * bmInfoHeader.bmiHeader.biBitCount / 8) : bmInfoHeader.bmiHeader.biSizeImage;
+	size_t nDataSize = pbmInfoHeader->bmiHeader.biSizeImage;//bmInfoHeader.bmiHeader.biCompression == BI_RGB ? (bmInfoHeader.bmiHeader.biHeight * bmInfoHeader.bmiHeader.biWidth * bmInfoHeader.bmiHeader.biBitCount / 8) : bmInfoHeader.bmiHeader.biSizeImage;
 
 	unsigned char* pBmp = malloc(nDataSize);
-	bmInfoHeader.bmiHeader.biCompression = BI_RGB;
-	bmInfoHeader.bmiHeader.biSizeImage = 0;
-	lRes = GetDIBits(hDc, hBmp, 0, bmInfoHeader.bmiHeader.biHeight, pBmp, &bmInfoHeader, DIB_RGB_COLORS);
+	pbmInfoHeader->bmiHeader.biCompression = BI_RGB;
+	pbmInfoHeader->bmiHeader.biSizeImage = 0;
+	lRes = GetDIBits(hDc, hBmp, 0, pbmInfoHeader->bmiHeader.biHeight, pBmp, pbmInfoHeader, DIB_RGB_COLORS);
 
 	// the next code copies pixels to AS3 BitmapData object (works fine for red pixels)
 
@@ -90,7 +90,7 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	{
 	    for (i = 0; i < bmd.width; i++, bmdPixels++)
 	    {
-	      * bmdPixels = 0xFF000000 | ((DWORD*) pBmp)[j * bmInfoHeader.bmiHeader.biWidth + i];
+	      * bmdPixels = 0xFF000000 | ((DWORD*) pBmp)[j * pbmInfoHeader->bmiHeader.biWidth + i];
 	    }
 
 	    bmdPixels += offset;
