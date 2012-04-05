@@ -54,16 +54,20 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	//Capture code till line 55
 	FILE* fLog = fopen ("capture.log", "wt");
-	printf("Base format:\n");
-	printf("biSize = %X\n", pbmInfoHeader->bmiHeader.biSize);
-	//Print all propertys...
-	printf("biSize = %X\n\n", pbmInfoHeader->bmiHeader.biClrImportant);
-	//Capture code till line 74....
-	printf("Image format:\n");
-	printf("biSize = %X\n", pbmInfoHeader->bmiHeader.biSize);
-	//Print all propertys...
-	printf("biSize = %X\n\n", pbmInfoHeader->bmiHeader.biClrImportant);
-	fclose(fLog);
+	fprintf(fLog, "Base format:\n");
+	fprintf(fLog, "biBitCount = %X\n", pbmInfoHeader->bmiHeader.biBitCount);
+	fprintf(fLog, "biClrImportant = %X\n", pbmInfoHeader->bmiHeader.biClrImportant);
+	fprintf(fLog, "biClrUsed = %X\n", pbmInfoHeader->bmiHeader.biClrUsed);
+	fprintf(fLog, "biCompression = %X\n", pbmInfoHeader->bmiHeader.biCompression);
+	fprintf(fLog, "biWidth = %X\n", pbmInfoHeader->bmiHeader.biWidth);
+	fprintf(fLog, "biHeight = %X\n", pbmInfoHeader->bmiHeader.biHeight);
+	fprintf(fLog, "biPlanes = %X\n", pbmInfoHeader->bmiHeader.biPlanes);
+	fprintf(fLog, "biSize = %X\n", pbmInfoHeader->bmiHeader.biSize);
+	fprintf(fLog, "biSizeImage = %X\n", pbmInfoHeader->bmiHeader.biSizeImage);
+	fprintf(fLog, "biXPelsPerMeter = %X\n", pbmInfoHeader->bmiHeader.biXPelsPerMeter);
+	fprintf(fLog, "biYPelsPerMeter = %X\n", pbmInfoHeader->bmiHeader.biYPelsPerMeter);
+
+	fprintf(fLog, "\n");
 
 	if (lRes == 0)
 	        return NULL;
@@ -86,6 +90,22 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	pbmInfoHeader->bmiHeader.biCompression = BI_RGB;
 	pbmInfoHeader->bmiHeader.biSizeImage = 0;
 	lRes = GetDIBits(hDc, hBmp, 0, pbmInfoHeader->bmiHeader.biHeight, pBmp, pbmInfoHeader, DIB_RGB_COLORS);
+
+	//Capture code till line 74....
+	fprintf(fLog, "Image format:\n");
+	fprintf(fLog, "biBitCount = %X\n", pbmInfoHeader->bmiHeader.biBitCount);
+	fprintf(fLog, "biClrImportant = %X\n", pbmInfoHeader->bmiHeader.biClrImportant);
+	fprintf(fLog, "biClrUsed = %X\n", pbmInfoHeader->bmiHeader.biClrUsed);
+	fprintf(fLog, "biCompression = %X\n", pbmInfoHeader->bmiHeader.biCompression);
+	fprintf(fLog, "biWidth = %X\n", pbmInfoHeader->bmiHeader.biWidth);
+	fprintf(fLog, "biHeight = %X\n", pbmInfoHeader->bmiHeader.biHeight);
+	fprintf(fLog, "biPlanes = %X\n", pbmInfoHeader->bmiHeader.biPlanes);
+	fprintf(fLog, "biSize = %X\n", pbmInfoHeader->bmiHeader.biSize);
+	fprintf(fLog, "biSizeImage = %X\n", pbmInfoHeader->bmiHeader.biSizeImage);
+	fprintf(fLog, "biXPelsPerMeter = %X\n", pbmInfoHeader->bmiHeader.biXPelsPerMeter);
+	fprintf(fLog, "biYPelsPerMeter = %X\n", pbmInfoHeader->bmiHeader.biYPelsPerMeter);
+	fclose(fLog);
+
 
 	// the next code copies pixels to AS3 BitmapData object (works fine for red pixels)
 
