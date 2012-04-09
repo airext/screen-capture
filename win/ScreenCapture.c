@@ -32,6 +32,7 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 {
 	// the next code takes screenshot and retrieves array of pixels (I can't test if it works fine)
 
+	/*
 	HDC hDc = GetWindowDC(NULL);
 
 	BITMAPFILEHEADER bmFileHeader;
@@ -49,6 +50,24 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	HBITMAP hBmp = (HBITMAP) GetCurrentObject(hDc, OBJ_BITMAP);
 	if (hBmp == NULL)
 	        return NULL;
+
+	*/
+
+	int nScreenWidth = GetSystemMetrics(SM_CXSCREEN);
+	int nScreenHeight = GetSystemMetrics(SM_CYSCREEN);
+	HWND hDesktopWnd = GetDesktopWindow();
+	HDC hDesktopDC = GetDC(hDesktopWnd);
+	HDC hDc = CreateCompatibleDC(hDesktopDC);
+	HBITMAP hBmp =CreateCompatibleBitmap(hDesktopDC,
+							nScreenWidth, nScreenHeight);
+	SelectObject(hDc,hBmp);
+	BitBlt(hDc,0,0,nScreenWidth,nScreenHeight,
+		   hDesktopDC,0,0,SRCCOPY|CAPTUREBLT);
+
+	BITMAPINFO MemoryLookup[4]; //Create a buffer zone for possible pallete
+	BITMAPINFO* pbmInfoHeader = MemoryLookup;
+	memset(pbmInfoHeader, 0, sizeof(BITMAPINFOHEADER));
+	pbmInfoHeader->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 
 	LONG lRes = GetDIBits(hDc, hBmp, 0, GetDeviceCaps(hDc, VERTRES), NULL, pbmInfoHeader, DIB_RGB_COLORS);
 
@@ -132,6 +151,10 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	  }
 
 	FREReleaseBitmapData(input);
+
+	ReleaseDC(hDesktopWnd,hDesktopDC);
+	DeleteDC(hDc);
+	DeleteObject(hBmp);
 
 	// the next code returns debug information
 
