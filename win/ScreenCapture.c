@@ -14,7 +14,11 @@
 #include "wingdi.h"
 #include "stdio.h"
 
-//------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
+
+
+//------------------------------------------------------------------------------
 
 FREObject isSupported(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[])
 {
@@ -32,99 +36,36 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 {
 	// the next code takes screenshot and retrieves array of pixels (I can't test if it works fine)
 
-	/*
-	HDC hDc = GetWindowDC(NULL);
+	int width = GetSystemMetrics(SM_CXSCREEN);
+	int height = GetSystemMetrics(SM_CYSCREEN);
+	HWND window = GetDesktopWindow();
+	HDC hdcSource = GetDC(window);
+	HDC hdcMemory = CreateCompatibleDC(hdcSource);
+	HBITMAP hbmp =CreateCompatibleBitmap(hdcSource, width, height);
 
-	BITMAPFILEHEADER bmFileHeader;
-	memset(&bmFileHeader, 0, sizeof(BITMAPFILEHEADER));
+	SelectObject(hdcMemory,hbmp);
 
-	bmFileHeader.bfType = 0x4D42;
-	bmFileHeader.bfSize = 0; //Need to be filled in future
-	bmFileHeader.bfOffBits = 0; //Need to be filled in future
-
-	BITMAPINFO MemoryLookup[4]; //Create a buffer zone for possible pallete
-	BITMAPINFO* pbmInfoHeader = MemoryLookup;
-	memset(pbmInfoHeader, 0, sizeof(BITMAPINFOHEADER));
-	pbmInfoHeader->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-
-	HBITMAP hBmp = (HBITMAP) GetCurrentObject(hDc, OBJ_BITMAP);
-	if (hBmp == NULL)
-	        return NULL;
-
-	*/
-
-	int nScreenWidth = GetSystemMetrics(SM_CXSCREEN);
-	int nScreenHeight = GetSystemMetrics(SM_CYSCREEN);
-	HWND hDesktopWnd = GetDesktopWindow();
-	HDC hDesktopDC = GetDC(hDesktopWnd);
-	HDC hDc = CreateCompatibleDC(hDesktopDC);
-	HBITMAP hBmp =CreateCompatibleBitmap(hDesktopDC,
-							nScreenWidth, nScreenHeight);
-	SelectObject(hDc,hBmp);
-	BitBlt(hDc,0,0,nScreenWidth,nScreenHeight,
-		   hDesktopDC,0,0,SRCCOPY|CAPTUREBLT);
+	BitBlt(hdcMemory, 0, 0, width, height, hdcSource, 0, 0, SRCCOPY|CAPTUREBLT);
 
 	BITMAPINFO MemoryLookup[4]; //Create a buffer zone for possible pallete
-	BITMAPINFO* pbmInfoHeader = MemoryLookup;
-	memset(pbmInfoHeader, 0, sizeof(BITMAPINFOHEADER));
-	pbmInfoHeader->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	BITMAPINFO* bmpInfo = MemoryLookup;
+	memset(bmpInfo, 0, sizeof(BITMAPINFOHEADER));
+	bmpInfo->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 
-	LONG lRes = GetDIBits(hDc, hBmp, 0, GetDeviceCaps(hDc, VERTRES), NULL, pbmInfoHeader, DIB_RGB_COLORS);
+	GetDIBits(hdcMemory, hbmp, 0, GetDeviceCaps(hdcMemory, VERTRES), NULL, bmpInfo, DIB_RGB_COLORS);
 
-	//Capture code till line 55
-	FILE* fLog = fopen ("capture.log", "wt");
-	fprintf(fLog, "Base format:\n");
-	fprintf(fLog, "biBitCount = %X\n", pbmInfoHeader->bmiHeader.biBitCount);
-	fprintf(fLog, "biClrImportant = %X\n", pbmInfoHeader->bmiHeader.biClrImportant);
-	fprintf(fLog, "biClrUsed = %X\n", pbmInfoHeader->bmiHeader.biClrUsed);
-	fprintf(fLog, "biCompression = %X\n", pbmInfoHeader->bmiHeader.biCompression);
-	fprintf(fLog, "biWidth = %X\n", pbmInfoHeader->bmiHeader.biWidth);
-	fprintf(fLog, "biHeight = %X\n", pbmInfoHeader->bmiHeader.biHeight);
-	fprintf(fLog, "biPlanes = %X\n", pbmInfoHeader->bmiHeader.biPlanes);
-	fprintf(fLog, "biSize = %X\n", pbmInfoHeader->bmiHeader.biSize);
-	fprintf(fLog, "biSizeImage = %X\n", pbmInfoHeader->bmiHeader.biSizeImage);
-	fprintf(fLog, "biXPelsPerMeter = %X\n", pbmInfoHeader->bmiHeader.biXPelsPerMeter);
-	fprintf(fLog, "biYPelsPerMeter = %X\n", pbmInfoHeader->bmiHeader.biYPelsPerMeter);
+	size_t dataSize = bmpInfo->bmiHeader.biSizeImage;//bmInfoHeader.bmiHeader.biCompression == BI_RGB ? (bmInfoHeader.bmiHeader.biHeight * bmInfoHeader.bmiHeader.biWidth * bmInfoHeader.bmiHeader.biBitCount / 8) : bmInfoHeader.bmiHeader.biSizeImage;
 
-	fprintf(fLog, "\n");
+	unsigned char* bytes = malloc(dataSize);
+	bmpInfo->bmiHeader.biCompression = BI_RGB;
+	bmpInfo->bmiHeader.biSizeImage = 0;
 
-	if (lRes == 0)
-	        return NULL;
+	int scanLinesNum = GetDIBits(hdcMemory, hbmp, 0, bmpInfo->bmiHeader.biHeight, bytes, bmpInfo, DIB_RGB_COLORS);
 
-	WORD  biBitCount = pbmInfoHeader->bmiHeader.biBitCount;
-	DWORD biClrImportant = pbmInfoHeader->bmiHeader.biClrImportant;
-	DWORD biClrUsed = pbmInfoHeader->bmiHeader.biClrUsed;
-	DWORD biCompression = pbmInfoHeader->bmiHeader.biCompression;
-	LONG  biHeight = pbmInfoHeader->bmiHeader.biHeight;
-	WORD  biPlanes = pbmInfoHeader->bmiHeader.biPlanes;
-	DWORD biSize = pbmInfoHeader->bmiHeader.biSize;
-	DWORD biSizeImage = pbmInfoHeader->bmiHeader.biSizeImage;
-	LONG  biWidth = pbmInfoHeader->bmiHeader.biWidth;
-	LONG  biXPelsPerMeter = pbmInfoHeader->bmiHeader.biXPelsPerMeter;
-	LONG  biYPelsPerMeter = pbmInfoHeader->bmiHeader.biYPelsPerMeter;
-
-	size_t nDataSize = pbmInfoHeader->bmiHeader.biSizeImage;//bmInfoHeader.bmiHeader.biCompression == BI_RGB ? (bmInfoHeader.bmiHeader.biHeight * bmInfoHeader.bmiHeader.biWidth * bmInfoHeader.bmiHeader.biBitCount / 8) : bmInfoHeader.bmiHeader.biSizeImage;
-
-	unsigned char* pBmp = malloc(nDataSize);
-	pbmInfoHeader->bmiHeader.biCompression = BI_RGB;
-	pbmInfoHeader->bmiHeader.biSizeImage = 0;
-	lRes = GetDIBits(hDc, hBmp, 0, pbmInfoHeader->bmiHeader.biHeight, pBmp, pbmInfoHeader, DIB_RGB_COLORS);
-
-	//Capture code till line 74....
-	fprintf(fLog, "Image format:\n");
-	fprintf(fLog, "biBitCount = %X\n", pbmInfoHeader->bmiHeader.biBitCount);
-	fprintf(fLog, "biClrImportant = %X\n", pbmInfoHeader->bmiHeader.biClrImportant);
-	fprintf(fLog, "biClrUsed = %X\n", pbmInfoHeader->bmiHeader.biClrUsed);
-	fprintf(fLog, "biCompression = %X\n", pbmInfoHeader->bmiHeader.biCompression);
-	fprintf(fLog, "biWidth = %X\n", pbmInfoHeader->bmiHeader.biWidth);
-	fprintf(fLog, "biHeight = %X\n", pbmInfoHeader->bmiHeader.biHeight);
-	fprintf(fLog, "biPlanes = %X\n", pbmInfoHeader->bmiHeader.biPlanes);
-	fprintf(fLog, "biSize = %X\n", pbmInfoHeader->bmiHeader.biSize);
-	fprintf(fLog, "biSizeImage = %X\n", pbmInfoHeader->bmiHeader.biSizeImage);
-	fprintf(fLog, "biXPelsPerMeter = %X\n", pbmInfoHeader->bmiHeader.biXPelsPerMeter);
-	fprintf(fLog, "biYPelsPerMeter = %X\n", pbmInfoHeader->bmiHeader.biYPelsPerMeter);
-	fclose(fLog);
-
+	// DEBUG
+	printf("scanLinesNum = %d\n", scanLinesNum);
+	printf("dataSize = %d\n", dataSize);
+	// DEBUG
 
 	// the next code copies pixels to AS3 BitmapData object (works fine for red pixels)
 
@@ -144,7 +85,7 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	{
 	    for (i = 0; i < bmd.width; i++, bmdPixels++)
 	    {
-	      * bmdPixels = 0xFF000000 | ((DWORD*) pBmp)[j * pbmInfoHeader->bmiHeader.biWidth + i];
+	      * bmdPixels = 0xFF000000 | ((DWORD*) bytes)[j * bmpInfo->bmiHeader.biWidth + i];
 	    }
 
 	    bmdPixels += offset;
@@ -152,15 +93,15 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	FREReleaseBitmapData(input);
 
-	ReleaseDC(hDesktopWnd,hDesktopDC);
-	DeleteDC(hDc);
-	DeleteObject(hBmp);
+	ReleaseDC(window, hdcSource);
+	DeleteDC(hdcMemory);
+	DeleteObject(hbmp);
 
 	// the next code returns debug information
 
 	FREObject result;
 
-	FRENewObjectFromUint32((uint32_t) biYPelsPerMeter, &result);
+	FRENewObjectFromUint32((uint32_t) 1, &result);
 
 	return result;
 }
