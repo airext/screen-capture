@@ -36,6 +36,11 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 {
 	// the next code takes screenshot and retrieves array of pixels (I can't test if it works fine)
 
+	FILE* fLog = fopen ("capture.log", "wt");
+	
+	fprintf(fLog, "Start ScreenCapture\n");
+	fflush(fLog);
+	
 	int width = GetSystemMetrics(SM_CXSCREEN);
 	int height = GetSystemMetrics(SM_CYSCREEN);
 	HWND window = GetDesktopWindow();
@@ -62,11 +67,6 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	int scanLinesNum = GetDIBits(hdcMemory, hbmp, 0, bmpInfo->bmiHeader.biHeight, bytes, bmpInfo, DIB_RGB_COLORS);
 
-	// DEBUG
-	printf("scanLinesNum = %d\n", scanLinesNum);
-	printf("dataSize = %d\n", dataSize);
-	// DEBUG
-
 	// the next code copies pixels to AS3 BitmapData object (works fine for red pixels)
 
 	FREObject input = argv[0];
@@ -81,6 +81,14 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	uint32_t *bmdPixels = bmd.bits32;
 
+	fprintf(fLog, "scanLinesNum = %d\n", scanLinesNum);
+	fprintf(fLog, "dataSize = %d\n", dataSize);
+	fprintf(fLog, "bmd.height = %d\n", bmd.height);
+
+	fprintf(fLog, "bmd.width = %d\n", bmd.width);
+	fprintf(fLog, "bmpInfo->bmiHeader.biWidth = %d\n", bmpInfo->bmiHeader.biWidth);
+	fflush(fLog);
+	
 	for (j = 0; j < bmd.height; j++)
 	{
 	    for (i = 0; i < bmd.width; i++, bmdPixels++)
@@ -89,8 +97,11 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 	    }
 
 	    bmdPixels += offset;
-	  }
+	}
 
+	fprintf(fLog, "Checkpoint 5\n");
+	fflush(fLog);
+	  
 	FREReleaseBitmapData(input);
 
 	ReleaseDC(window, hdcSource);
@@ -103,6 +114,11 @@ FREObject capture(FREContext ctx, void* functionData, uint32_t argc, FREObject a
 
 	FRENewObjectFromUint32((uint32_t) 1, &result);
 
+	fprintf(fLog, "End ScreenCapture\n");
+	fflush(fLog);
+	
+	fclose(fLog);
+	
 	return result;
 }
 

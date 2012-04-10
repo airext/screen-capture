@@ -17,7 +17,7 @@
 				var screenshot:ScreenCapture = new ScreenCapture();
 				
 				var t:Number = getTimer();
-				bmd = screenshot.capture(1920,1080) as BitmapData;
+				bmd = screenshot.capture() as BitmapData;
 				trace(getTimer() - t);
 				
 				trace(bmd.getPixel(0, 0));
