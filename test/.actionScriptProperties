@@ -37,12 +37,15 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
-      <libraryPathEntry kind="5" linkType="2" path="D:/labs/screen-capture/build/ScreenCapture.ane"/>
+      <libraryPathEntry kind="5" linkType="2" path="E:/labs/screen-capture/build/ScreenCapture.ane"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
   <applications>
     <application path="ScreenCaptureTest.mxml">
+      <airExcludes/>
+    </application>
+    <application path="ScreenshotTest.mxml">
       <airExcludes/>
     </application>
   </applications>
