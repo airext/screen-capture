@@ -1,0 +1,1 @@
+adt -package -target ane ScreenCapture.ane extension.xml -swc ScreenCapture.swc -platform Windows-x86 library.swf ScreenCapture.dll -platform MacOS-x86 library.swf ScreenCapture.framework

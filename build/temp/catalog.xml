@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flex version="4.6.0" build="23201" minimumSupportedVersion="3.0.0" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="_a4dcc140f7cdfd66010faedc38ad186c31966a0685a8fa4074e03a6757c8e406_flash_display_Sprite" mod="1355599918856" signatureChecksum="4215962339" >
+        <def id="_a4dcc140f7cdfd66010faedc38ad186c31966a0685a8fa4074e03a6757c8e406_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="org/log5f/air/extensions/ScreenCapture" mod="1355599727000" signatureChecksum="3059771566" >
+        <def id="org.log5f.air.extensions:ScreenCapture" /> 
+        <dep id="flash.display:BitmapData" type="e" /> 
+        <dep id="flash.system:Capabilities" type="e" /> 
+        <dep id="flash.external:ExtensionContext" type="e" /> 
+        <dep id="flash.display:BitmapData" type="s" /> 
+        <dep id="flash.external:ExtensionContext" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <digests>
+        <digest type="SHA-256" signed="false" value="1da47f28721fc4745bfd05adba1a879666d9f0cdbe2db8f389f29a24bc1f1ed4"   />
+      </digests>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>

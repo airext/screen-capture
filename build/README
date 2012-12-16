@@ -3,4 +3,4 @@ To successfull buil you need:
 1. GNU compiler, you can use MinGW
 2. Defined %FLEX_HOME% property, that is a path to Flex SDK 4.6 (or later) with AIR SDK 3.1 (or later)
 
-Note: You may need Microsoft SDK, although required libraries are included.
+Note: You may need Microsoft SDK, although required libraries are included./Users/max/labs/screencapture/build/certificate.bat

@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5020800C167D0885008C4045 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5020800B167D0885008C4045 /* Cocoa.framework */; };
+		50208016167D0885008C4045 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50208014167D0885008C4045 /* InfoPlist.strings */; };
+		5020801A167D0885008C4045 /* ScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 50208019167D0885008C4045 /* ScreenCapture.m */; };
+		50208022167D0885008C4045 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50208021167D0885008C4045 /* SenTestingKit.framework */; };
+		50208023167D0885008C4045 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5020800B167D0885008C4045 /* Cocoa.framework */; };
+		50208026167D0885008C4045 /* ScreenCapture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50208008167D0885008C4045 /* ScreenCapture.framework */; };
+		5020802C167D0886008C4045 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5020802A167D0886008C4045 /* InfoPlist.strings */; };
+		5020802F167D0886008C4045 /* ScreenCaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5020802E167D0886008C4045 /* ScreenCaptureTests.m */; };
+		50208039167D0920008C4045 /* Adobe AIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50208038167D0920008C4045 /* Adobe AIR.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		50208024167D0885008C4045 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50207FFE167D0885008C4045 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50208007167D0885008C4045;
+			remoteInfo = ScreenCapture;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		50208008167D0885008C4045 /* ScreenCapture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ScreenCapture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5020800B167D0885008C4045 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		5020800E167D0885008C4045 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		5020800F167D0885008C4045 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		50208010167D0885008C4045 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		50208013167D0885008C4045 /* ScreenCapture-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScreenCapture-Info.plist"; sourceTree = "<group>"; };
+		50208015167D0885008C4045 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		50208017167D0885008C4045 /* ScreenCapture-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScreenCapture-Prefix.pch"; sourceTree = "<group>"; };
+		50208018167D0885008C4045 /* ScreenCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenCapture.h; sourceTree = "<group>"; };
+		50208019167D0885008C4045 /* ScreenCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenCapture.m; sourceTree = "<group>"; };
+		50208020167D0885008C4045 /* ScreenCaptureTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreenCaptureTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		50208021167D0885008C4045 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		50208029167D0885008C4045 /* ScreenCaptureTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScreenCaptureTests-Info.plist"; sourceTree = "<group>"; };
+		5020802B167D0886008C4045 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5020802D167D0886008C4045 /* ScreenCaptureTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenCaptureTests.h; sourceTree = "<group>"; };
+		5020802E167D0886008C4045 /* ScreenCaptureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenCaptureTests.m; sourceTree = "<group>"; };
+		50208038167D0920008C4045 /* Adobe AIR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Adobe AIR.framework"; path = "../../../../../../../Applications/Adobe Flash Builder 4.7/sdks/4.6.0/runtimes/air/mac/Adobe AIR.framework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50208004167D0885008C4045 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5020800C167D0885008C4045 /* Cocoa.framework in Frameworks */,
+				50208039167D0920008C4045 /* Adobe AIR.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5020801C167D0885008C4045 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50208022167D0885008C4045 /* SenTestingKit.framework in Frameworks */,
+				50208023167D0885008C4045 /* Cocoa.framework in Frameworks */,
+				50208026167D0885008C4045 /* ScreenCapture.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		50207FFC167D0885008C4045 = {
+			isa = PBXGroup;
+			children = (
+				50208011167D0885008C4045 /* ScreenCapture */,
+				50208027167D0885008C4045 /* ScreenCaptureTests */,
+				5020800A167D0885008C4045 /* Frameworks */,
+				50208009167D0885008C4045 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		50208009167D0885008C4045 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50208008167D0885008C4045 /* ScreenCapture.framework */,
+				50208020167D0885008C4045 /* ScreenCaptureTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5020800A167D0885008C4045 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5020800B167D0885008C4045 /* Cocoa.framework */,
+				50208021167D0885008C4045 /* SenTestingKit.framework */,
+				5020800D167D0885008C4045 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5020800D167D0885008C4045 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5020800E167D0885008C4045 /* AppKit.framework */,
+				5020800F167D0885008C4045 /* CoreData.framework */,
+				50208010167D0885008C4045 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		50208011167D0885008C4045 /* ScreenCapture */ = {
+			isa = PBXGroup;
+			children = (
+				50208038167D0920008C4045 /* Adobe AIR.framework */,
+				50208018167D0885008C4045 /* ScreenCapture.h */,
+				50208019167D0885008C4045 /* ScreenCapture.m */,
+				50208012167D0885008C4045 /* Supporting Files */,
+			);
+			path = ScreenCapture;
+			sourceTree = "<group>";
+		};
+		50208012167D0885008C4045 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				50208013167D0885008C4045 /* ScreenCapture-Info.plist */,
+				50208014167D0885008C4045 /* InfoPlist.strings */,
+				50208017167D0885008C4045 /* ScreenCapture-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		50208027167D0885008C4045 /* ScreenCaptureTests */ = {
+			isa = PBXGroup;
+			children = (
+				5020802D167D0886008C4045 /* ScreenCaptureTests.h */,
+				5020802E167D0886008C4045 /* ScreenCaptureTests.m */,
+				50208028167D0885008C4045 /* Supporting Files */,
+			);
+			path = ScreenCaptureTests;
+			sourceTree = "<group>";
+		};
+		50208028167D0885008C4045 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				50208029167D0885008C4045 /* ScreenCaptureTests-Info.plist */,
+				5020802A167D0886008C4045 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		50208005167D0885008C4045 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		50208007167D0885008C4045 /* ScreenCapture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50208032167D0886008C4045 /* Build configuration list for PBXNativeTarget "ScreenCapture" */;
+			buildPhases = (
+				50208003167D0885008C4045 /* Sources */,
+				50208004167D0885008C4045 /* Frameworks */,
+				50208005167D0885008C4045 /* Headers */,
+				50208006167D0885008C4045 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScreenCapture;
+			productName = ScreenCapture;
+			productReference = 50208008167D0885008C4045 /* ScreenCapture.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5020801F167D0885008C4045 /* ScreenCaptureTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50208035167D0886008C4045 /* Build configuration list for PBXNativeTarget "ScreenCaptureTests" */;
+			buildPhases = (
+				5020801B167D0885008C4045 /* Sources */,
+				5020801C167D0885008C4045 /* Frameworks */,
+				5020801D167D0885008C4045 /* Resources */,
+				5020801E167D0885008C4045 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				50208025167D0885008C4045 /* PBXTargetDependency */,
+			);
+			name = ScreenCaptureTests;
+			productName = ScreenCaptureTests;
+			productReference = 50208020167D0885008C4045 /* ScreenCaptureTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50207FFE167D0885008C4045 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Max Rozdobudko";
+			};
+			buildConfigurationList = 50208001167D0885008C4045 /* Build configuration list for PBXProject "ScreenCapture" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 50207FFC167D0885008C4045;
+			productRefGroup = 50208009167D0885008C4045 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50208007167D0885008C4045 /* ScreenCapture */,
+				5020801F167D0885008C4045 /* ScreenCaptureTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50208006167D0885008C4045 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50208016167D0885008C4045 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5020801D167D0885008C4045 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5020802C167D0886008C4045 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5020801E167D0885008C4045 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50208003167D0885008C4045 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5020801A167D0885008C4045 /* ScreenCapture.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5020801B167D0885008C4045 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5020802F167D0886008C4045 /* ScreenCaptureTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		50208025167D0885008C4045 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50208007167D0885008C4045 /* ScreenCapture */;
+			targetProxy = 50208024167D0885008C4045 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		50208014167D0885008C4045 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50208015167D0885008C4045 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		5020802A167D0886008C4045 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5020802B167D0886008C4045 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		50208030167D0886008C4045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		50208031167D0886008C4045 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		50208033167D0886008C4045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Adobe Flash Builder 4.7/sdks/4.6.0/runtimes/air/mac\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScreenCapture/ScreenCapture-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "ScreenCapture/ScreenCapture-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = (
+					"-weakFramework",
+					"-flat_namespace",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		50208034167D0886008C4045 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Adobe Flash Builder 4.7/sdks/4.6.0/runtimes/air/mac\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScreenCapture/ScreenCapture-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "ScreenCapture/ScreenCapture-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-weakFramework",
+					"-flat_namespace",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		50208036167D0886008C4045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScreenCapture/ScreenCapture-Prefix.pch";
+				INFOPLIST_FILE = "ScreenCaptureTests/ScreenCaptureTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		50208037167D0886008C4045 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScreenCapture/ScreenCapture-Prefix.pch";
+				INFOPLIST_FILE = "ScreenCaptureTests/ScreenCaptureTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50208001167D0885008C4045 /* Build configuration list for PBXProject "ScreenCapture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50208030167D0886008C4045 /* Debug */,
+				50208031167D0886008C4045 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50208032167D0886008C4045 /* Build configuration list for PBXNativeTarget "ScreenCapture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50208033167D0886008C4045 /* Debug */,
+				50208034167D0886008C4045 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		50208035167D0886008C4045 /* Build configuration list for PBXNativeTarget "ScreenCaptureTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50208036167D0886008C4045 /* Debug */,
+				50208037167D0886008C4045 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50207FFE167D0885008C4045 /* Project object */;
+}
