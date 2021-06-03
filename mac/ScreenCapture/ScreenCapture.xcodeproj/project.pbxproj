@@ -15,7 +15,8 @@
 		50208026167D0885008C4045 /* ScreenCapture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50208008167D0885008C4045 /* ScreenCapture.framework */; };
 		5020802C167D0886008C4045 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5020802A167D0886008C4045 /* InfoPlist.strings */; };
 		5020802F167D0886008C4045 /* ScreenCaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5020802E167D0886008C4045 /* ScreenCaptureTests.m */; };
-		50208039167D0920008C4045 /* Adobe AIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50208038167D0920008C4045 /* Adobe AIR.framework */; };
+		50A44716242A1C40008AA1E8 /* Adobe AIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A44712242A1C2B008AA1E8 /* Adobe AIR.framework */; };
+		50A4471A242A1C50008AA1E8 /* Adobe AIR_64 in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A44719242A1C50008AA1E8 /* Adobe AIR_64 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,9 @@
 		5020802D167D0886008C4045 /* ScreenCaptureTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenCaptureTests.h; sourceTree = "<group>"; };
 		5020802E167D0886008C4045 /* ScreenCaptureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenCaptureTests.m; sourceTree = "<group>"; };
 		50208038167D0920008C4045 /* Adobe AIR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Adobe AIR.framework"; path = "../../../../../../../Applications/Adobe Flash Builder 4.7/sdks/4.6.0/runtimes/air/mac/Adobe AIR.framework"; sourceTree = "<group>"; };
+		50A44712242A1C2B008AA1E8 /* Adobe AIR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "Adobe AIR.framework"; sourceTree = "<group>"; };
+		50A44719242A1C50008AA1E8 /* Adobe AIR_64 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "Adobe AIR_64"; path = "Adobe AIR.framework/Versions/1.0/Adobe AIR_64"; sourceTree = "<group>"; };
+		50A4471D242A1C72008AA1E8 /* Adobe AIR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "Adobe AIR.framework"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +57,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A44716242A1C40008AA1E8 /* Adobe AIR.framework in Frameworks */,
+				50A4471A242A1C50008AA1E8 /* Adobe AIR_64 in Frameworks */,
 				5020800C167D0885008C4045 /* Cocoa.framework in Frameworks */,
-				50208039167D0920008C4045 /* Adobe AIR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +98,8 @@
 		5020800A167D0885008C4045 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50A44719242A1C50008AA1E8 /* Adobe AIR_64 */,
+				50A44712242A1C2B008AA1E8 /* Adobe AIR.framework */,
 				5020800B167D0885008C4045 /* Cocoa.framework */,
 				50208021167D0885008C4045 /* SenTestingKit.framework */,
 				5020800D167D0885008C4045 /* Other Frameworks */,
@@ -144,6 +151,7 @@
 		50208028167D0885008C4045 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				50A4471D242A1C72008AA1E8 /* Adobe AIR.framework */,
 				50208029167D0885008C4045 /* ScreenCaptureTests-Info.plist */,
 				5020802A167D0886008C4045 /* InfoPlist.strings */,
 			);
@@ -214,6 +222,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 50207FFC167D0885008C4045;
@@ -336,6 +345,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -359,6 +369,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -372,19 +383,25 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Adobe Flash Builder 4.7/sdks/4.6.0/runtimes/air/mac\"",
+					"$(PROJECT_DIR)",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScreenCapture/ScreenCapture-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "ScreenCapture/ScreenCapture-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Adobe\\ AIR.framework/Versions/1.0",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
-					"-weakFramework",
+					"-weak_framework",
+					"\"Adobe AIR\"",
 					"-flat_namespace",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -399,20 +416,25 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Adobe Flash Builder 4.7/sdks/4.6.0/runtimes/air/mac\"",
+					"$(PROJECT_DIR)",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScreenCapture/ScreenCapture-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "ScreenCapture/ScreenCapture-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Adobe\\ AIR.framework/Versions/1.0",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
-					"-weakFramework",
+					"-weak_framework",
+					"\"Adobe AIR\"",
 					"-flat_namespace",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -462,6 +484,7 @@
 				50208034167D0886008C4045 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50208035167D0886008C4045 /* Build configuration list for PBXNativeTarget "ScreenCaptureTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +493,7 @@
 				50208037167D0886008C4045 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
